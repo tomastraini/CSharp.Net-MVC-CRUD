@@ -1,0 +1,60 @@
+﻿
+@model ProyectoPlanetario.Models.telefonum
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <div class="form-horizontal">
+            <h4>Carga de teléfonos</h4>
+       
+                        <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                <h4 class="" control-label col-md-2"">Persona</h4>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.personaid, new { htmlAttributes = new { @class = "form-control hidden" }})
+                    @Html.DropDownList("personaid1", null, new { @class = "form-control", @onChange = "SelectedValue(this)" })
+                    @*@Html.DropDownListFor(model => model.personaid1, ViewBag.personaid1 as SelectList, new { @class = "form-control", @onChange = "SelectedValue(this)" })*@
+                   
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.telefono, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+}
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary" }, new { @class = "btn btn-primary" })
+
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+                $('select').on('change', function () {
+                  console.log('Changed option value ' + this.value);
+                  console.log('Changed option text ' + $(this).find('option').filter(':selected').text());
+                  document.getElementById("personaid").value = this.value;
+                });
+    document.getElementById("personaid").value = $('select').find("option:first-child").val()
+
+</script>   

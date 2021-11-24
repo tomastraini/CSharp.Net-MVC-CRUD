@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ProyectoPlanetario.Models.persona>
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+<a href="@Url.Action("Create")" class="btn btn-primary">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Agregar cliente
+</a>
+
+
+
+
+<form asp-controller="telefonum" asp-action="Index" class="dsaoijioad">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <input type="text" class="form-control" placeholder="Buscar cliente " name="Search" />
+        </div>
+        <div class="form-group col-md-2">
+            <button class="btn btn-primary dassadsad" type="submit"> Buscar cliente <i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+    </div>
+</form>
+<style>
+    .dsaoijioad {
+        position: absolute;
+        left: 500px;
+        top: 0px;
+        z-index: 200;
+    }
+
+    .form-control {
+        width: 150px;
+        z-index: 200;
+    }
+
+    .dassadsad {
+        margin-left: 100px;
+        z-index: 200;
+    }
+  
+</style>
+
+<table class="table" style="">
+    <tr>
+      
+        <th>
+            Nombre
+        </th>
+        <th>
+            Fecha de nacimiento
+        </th>
+        <th>
+            Límite de cuenta
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechanacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditomaximo)
+        </td>
+        <td>
+          
+            <a href="@Url.Action("Edit", new { id = item.PersonaID })" class="btn btn-primary">
+                Editar <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+
+            <a href="@Url.Action("Delete", new { id = item.PersonaID })" class="btn btn-danger">
+                Borrar <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+
+               
+</td>
+    </tr>
+}
+
+</table>
+
+
+<button class="btn btn-primary" href="javascript:void(0);" id="backLink">
+    Volver
+</button>
+
+<script type="text/javascript">
+    $(document).on('click', '#backLink', function () {
+        history.go(-1);
+    });
+</script>

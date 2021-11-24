@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ProyectoPlanetario.Models.telefonum>
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+<a href="@Url.Action("Create")" class="btn btn-primary">
+    Agregar telefono <i class="fa fa-phone"></i>
+</a>
+
+
+<form asp-controller="telefonum" asp-action="Index" class="dsaoijioad">
+    <div class="form-row">
+        <div class="form-group col-md-2">
+            <input type="text" class="form-control" placeholder="Buscar" name="Search" />
+        </div>
+        <div class="form-group col-md-2">
+            <button class="btn btn-primary dassadsad" type="submit"> Buscar</button>
+        </div>
+    </div>
+</form>
+<style>
+    .dsaoijioad{
+        position:absolute;
+        left:500px;
+        top:0px;
+        z-index: 200;
+    }
+    .form-control{
+        width:150px;
+    }
+    .dassadsad{
+        
+        margin-left:100px;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Modificar
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", new { id = item.telefonoid })" class="btn btn-primary">
+                Editar <i class="fa fa-pencil" aria-hidden="true"></i>
+            </a>
+
+            <a href="@Url.Action("Delete", new { id = item.telefonoid })" class="btn btn-danger">
+                Borrar <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+<button class="btn btn-primary" href="javascript:void(0);" id="backLink">
+    Volver
+</button>
+
+<script type="text/javascript">
+    $(document).on('click', '#backLink', function () {
+        history.go(-1);
+    });
+</script>
